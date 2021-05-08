@@ -10,40 +10,40 @@ import Alamofire
 import CryptoKit
 
 class ViewController: UIViewController {
-  let url = "http://janzelaznog.com/DDAM/iOS/WS/login.php"
+  let url = "https://reqres.in/api/login"
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
   }
   
-  @IBOutlet weak var username: UITextField!
+  @IBOutlet weak var emailInput: UITextField!
   @IBOutlet weak var passwordInput: UITextField!
   @IBAction func submitSignIn(_ sender: Any) {
-    if !username.text!.isEmpty {
+    if emailInput.text!.isEmpty {
       let title = "Error en el formulario"
       let message = "Se necesita un usuario para inicar sesión"
       displayAlert(title, message: message)
       return
     }
-
-    if !passwordInput.text!.isEmpty {
+    
+    if passwordInput.text!.isEmpty {
       let title = "Error en el formulario"
       let message = "La contraseña es requerida para inicar sesión"
       displayAlert(title, message: message)
       return
     }
     
-
-    let username = username.text!
+    
+    let email = emailInput.text!
     let password = passwordInput.text!
     
-//    if !isValidEmail(username) {
-//      let title = "Error en el correo"
-//      let message = "Por favor ingresa un correo valido"
-//      displayAlert(title, message: message)
-//      return
-//    }
+    if !isValidEmail(email) {
+      let title = "Error en el correo"
+      let message = "Por favor ingresa un correo valido"
+      displayAlert(title, message: message)
+      return
+    }
     
     if !isValidPassword(password) {
       let title = "Error en el formulario"
@@ -52,15 +52,20 @@ class ViewController: UIViewController {
       return
     }
     
-    let passwordCrypted = crypthPassword(password)
-
+    // let passwordCrypted = crypthPassword(password)
+    
     let params: [String:String] = [
-      "username": username,
-      "password": passwordCrypted
+      "email": email,
+      "password": password
     ]
     
-    AF.request(url, method: .post, parameters: params).validate().responseJSON(completionHandler: { response in
-      print(response)
+    AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default ).validate().responseJSON(completionHandler: { response in
+      guard let result = response.value else { return }
+      let value = result as! NSDictionary
+      let token = value.object(forKey: "token")
+      let title = "Listo, ya iniciaste sesión"
+      let message = "Este es el token: \(token ?? "")"
+      self.displayAlert(title, message: message)
     })
   }
   
