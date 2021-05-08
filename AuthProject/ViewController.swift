@@ -66,11 +66,12 @@ class ViewController: UIViewController {
         self.displayAlert(title, message: message)
         return
       }
-      let value = result as! NSDictionary
-      let token = value.object(forKey: "token")
-      let title = "Listo, ya iniciaste sesión"
-      let message = "Este es el token: \(token ?? "")"
-      self.displayAlert(title, message: message)
+      self.performSegue(withIdentifier: "loginControllerToNavigationController", sender: self)
+//      let value = result as! NSDictionary
+//      let token = value.object(forKey: "token")
+//      let title = "Listo, ya iniciaste sesión"
+//      let message = "Este es el token: \(token ?? "")"
+//      self.displayAlert(title, message: message)
     })
   }
   

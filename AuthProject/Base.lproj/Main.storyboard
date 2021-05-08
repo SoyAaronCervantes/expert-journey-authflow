@@ -51,11 +51,95 @@
                     <connections>
                         <outlet property="emailInput" destination="gu2-bn-JUt" id="U8X-kX-70x"/>
                         <outlet property="passwordInput" destination="bw9-OD-0eT" id="Zqf-J6-xM1"/>
+                        <segue destination="dRf-Yq-K6s" kind="presentation" identifier="loginControllerToNavigationController" modalPresentationStyle="fullScreen" id="zky-cx-wtb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="131"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="8ev-oY-hQy">
+            <objects>
+                <tableViewController id="Fqp-kR-p9s" customClass="CustomTableViewController" customModule="AuthProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dza-9V-NrX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTableView" id="7SI-8d-Z06">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7SI-8d-Z06" id="m6Y-MF-DZz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bSl-ZJ-MSc" kind="show" identifier="tableViewToDetailController" id="jXc-g6-gGW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Fqp-kR-p9s" id="EjK-5B-Iax"/>
+                            <outlet property="delegate" destination="Fqp-kR-p9s" id="jJ5-xB-G1J"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="DCT-js-HnI"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvT-cC-g9i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="961" y="866"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="xRo-Eg-LK2">
+            <objects>
+                <viewController id="bSl-ZJ-MSc" customClass="DetailsViewController" customModule="AuthProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tfU-ub-Dfu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OYl-Kb-2Bg">
+                                <rect key="frame" x="16" y="104" width="382" height="742"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FqG-ip-fFe" userLabel="imageView">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="742"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JMs-80-E0J"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JMs-80-E0J" firstAttribute="trailing" secondItem="OYl-Kb-2Bg" secondAttribute="trailing" constant="16" id="9xC-oD-pxN"/>
+                            <constraint firstItem="JMs-80-E0J" firstAttribute="bottom" secondItem="OYl-Kb-2Bg" secondAttribute="bottom" constant="16" id="V3f-1k-qrV"/>
+                            <constraint firstItem="OYl-Kb-2Bg" firstAttribute="top" secondItem="JMs-80-E0J" secondAttribute="top" constant="16" id="Wg8-Ba-Jai"/>
+                            <constraint firstItem="OYl-Kb-2Bg" firstAttribute="leading" secondItem="JMs-80-E0J" secondAttribute="leading" constant="16" id="n9Q-Nc-mPQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xom-xw-7AV"/>
+                    <connections>
+                        <outlet property="imageView" destination="FqG-ip-fFe" id="can-fN-27Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ndW-hY-yDG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="961" y="1568"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jbm-bN-bSf">
+            <objects>
+                <navigationController id="dRf-Yq-K6s" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NtT-Dg-gBt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Fqp-kR-p9s" kind="relationship" relationship="rootViewController" id="Ky4-Bs-vv8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zb7-hK-n17" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="866"/>
         </scene>
     </scenes>
     <resources>
