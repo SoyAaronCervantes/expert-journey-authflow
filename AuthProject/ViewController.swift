@@ -60,7 +60,12 @@ class ViewController: UIViewController {
     ]
     
     AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default ).validate().responseJSON(completionHandler: { response in
-      guard let result = response.value else { return }
+      guard let result = response.value else {
+        let title = "Error al iniciar sesion"
+        let message = "Tu correo/contraseña no coinciden"
+        self.displayAlert(title, message: message)
+        return
+      }
       let value = result as! NSDictionary
       let token = value.object(forKey: "token")
       let title = "Listo, ya iniciaste sesión"
